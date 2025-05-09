@@ -8,7 +8,10 @@ import { useEffect, useState } from "react";
 
 const AnswerQuiz = ({ quiz }) => {
     
-  const answersTemplate = quiz.questions.map((question) => ({
+  if(typeof quiz == "string") {
+    quiz = JSON.parse(quiz)
+  }
+    const answersTemplate = quiz.questions.map((question) => ({
     number: question.question_id,
     answer: undefined,
   }));

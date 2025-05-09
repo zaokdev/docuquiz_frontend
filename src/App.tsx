@@ -8,7 +8,6 @@ function App() {
   return (
     <Routes>
       <Route element={<IndexPage />} path="/" />
-      <Route element={<CreatePage />} path="/create" />
       <Route element={<AnswerPage />} path="/answer" />
     </Routes>
   );
