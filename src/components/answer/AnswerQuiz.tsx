@@ -1,20 +1,23 @@
+/* eslint-disable prettier/prettier */
 import FreeAnswer from "@/components/answer/FreeAnswer";
 import MultipleAnswer from "@/components/answer/MultipleAnswer";
 import TrueFalseAnswer from "@/components/answer/TrueFalseAnswer";
 import UniqueAnswer from "@/components/answer/UniqueAnswer";
 import DefaultLayout from "@/layouts/default";
 import { Button } from "@heroui/button";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-const AnswerQuiz = ({ quiz }) => {
+const AnswerQuiz = ({ quiz }:any) => {
     
   if(typeof quiz == "string") {
     quiz = JSON.parse(quiz)
   }
-    const answersTemplate = quiz.questions.map((question) => ({
+    const answersTemplate = quiz.questions.map((question:any) => ({
     number: question.question_id,
     answer: undefined,
+    type: question.type
   }));
+
 
   const [selectedAnswers, setSelectedAnswers] = useState(answersTemplate);
 
@@ -23,11 +26,19 @@ const AnswerQuiz = ({ quiz }) => {
       <section className="grid md:grid-cols-12">
         <form
           className="col-span-6 flex flex-col gap-6"
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault();
+            const {questions} = quiz
+            await fetch("http://localhost:3000/api/quiz/grade",{
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({questions, selectedAnswers})
+            })
           }}
         >
-          {quiz.questions.map((question) => {
+          {quiz.questions.map((question:any) => {
             switch (question.type) {
               case "unique":
                 return (

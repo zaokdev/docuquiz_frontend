@@ -122,6 +122,7 @@ export default function IndexPage() {
         </div>
         {error && <span>{error}</span>}
         {isUploading && !error && <CircularProgress color="primary" />}
+        {isUploading && !error && <span>El proceso demorará de 1 a 2 minutos. :)</span>}
       </section>
     </DefaultLayout>
   );
