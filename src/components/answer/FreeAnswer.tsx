@@ -1,8 +1,8 @@
+/* eslint-disable prettier/prettier */
 import { Card, CardHeader, CardBody } from "@heroui/card";
 import { Input } from "@heroui/input";
 
 type Props = {
-  id: number;
   question: any;
   onAnswerChange: any;
   isSolving: boolean;
@@ -14,7 +14,7 @@ type AnswerTemplate = {
   type: any;
 };
 
-const FreeAnswer = ({ id, question, isSolving, onAnswerChange }: Props) => {
+const FreeAnswer = ({ question, isSolving, onAnswerChange }: Props) => {
   return (
     <Card>
       <CardHeader>{question.question}</CardHeader>
@@ -27,7 +27,7 @@ const FreeAnswer = ({ id, question, isSolving, onAnswerChange }: Props) => {
           onValueChange={(selectedValue) => {
             onAnswerChange((prev: AnswerTemplate[]) => {
               return prev.map((answer: AnswerTemplate) => {
-                if (answer.number === id) {
+                if (answer.number === question.question_id) {
                   return { ...answer, answer: selectedValue };
                 }
                 return answer;

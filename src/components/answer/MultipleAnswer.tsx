@@ -1,10 +1,12 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable react/jsx-sort-props */
 import { Card, CardHeader, CardBody } from "@heroui/card";
 import { CheckboxGroup, Checkbox } from "@heroui/checkbox";
 
 type Props = {
-  id: number;
+
   question: any;
-  answers: any;
+
   onSelectedChange: any;
   isSolving: boolean;
 };
@@ -16,26 +18,26 @@ type AnswerTemplate = {
 };
 
 const MultipleAnswer = ({
-  id,
+
   question,
-  answers,
+
   isSolving,
   onSelectedChange,
 }: Props) => {
   return (
-    <Card key={id}>
-      {id}
+    <Card key={question.question_id}>
+      {question.question_id}
       <CardHeader>{question.question}</CardHeader>
       <CardBody>
         {isSolving && <span>{question.feedback}</span>}
         <CheckboxGroup
-          name={id.toString()}
-          id={id.toString()}
+          name={question.question_id.toString()}
+          id={question.question_id.toString()}
           isDisabled={isSolving}
           onValueChange={(selectedValue) => {
             onSelectedChange((prev: AnswerTemplate[]) => {
               return prev.map((answerLog: AnswerTemplate) => {
-                if (answerLog.number === id) {
+                if (answerLog.number === question.question_id) {
                   return { ...answerLog, answer: [...selectedValue] };
                 }
                 return answerLog;
@@ -43,11 +45,11 @@ const MultipleAnswer = ({
             });
           }}
         >
-          {answers.map((answer: any) => (
+          {question.answers.map((answer: any) => (
             <Checkbox
               value={answer.id}
               id={answer.id}
-              name={id.toString()}
+              name={question.question_id.toString()}
               key={answer.id}
             >
               {answer.text}

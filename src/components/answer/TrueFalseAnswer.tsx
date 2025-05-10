@@ -1,9 +1,7 @@
 import { Card, CardBody, CardHeader } from "@heroui/card";
 import { Radio, RadioGroup } from "@heroui/radio";
-import React from "react";
 
 type Props = {
-  id: number;
   question: any;
   onSelectedChange: any;
   isSolving: boolean;
@@ -16,7 +14,6 @@ type AnswerTemplate = {
 };
 
 const TrueFalseAnswer = ({
-  id,
   question,
   isSolving,
   onSelectedChange,
@@ -27,13 +24,13 @@ const TrueFalseAnswer = ({
       <CardBody>
         {isSolving && <span>{question.feedback}</span>}
         <RadioGroup
-          name={id.toString()}
-          id={id.toString()}
+          name={question.question_id.toString()}
+          id={question.question_id.toString()}
           isDisabled={isSolving}
           onValueChange={(selectedValue) => {
             onSelectedChange((prev: AnswerTemplate[]) => {
               return prev.map((answer: AnswerTemplate) => {
-                if (answer.number === id) {
+                if (answer.number === question.question_id) {
                   return { ...answer, answer: selectedValue };
                 }
                 return answer;
