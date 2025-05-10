@@ -3,21 +3,31 @@ import { Radio, RadioGroup } from "@heroui/radio";
 
 type Props = {
   id: number;
-  question: string;
+  question: any;
   answers: any;
   onSelectedChange: any;
+  isSolving: boolean;
 };
 
 type AnswerTemplate = {
   number: number;
   answer: any;
+  type: any;
 };
 
-const UniqueAnswer = ({ id, question, answers, onSelectedChange }: Props) => {
+const UniqueAnswer = ({
+  id,
+  question,
+  answers,
+  isSolving,
+  onSelectedChange,
+}: Props) => {
   return (
     <Card key={id}>
-      <CardHeader>{question}</CardHeader>
+      <CardHeader>{question.question}</CardHeader>
       <CardBody>
+        {isSolving && <span>{question.feedback}</span>}
+
         <RadioGroup
           name={id.toString()}
           id={id.toString()}
@@ -38,6 +48,7 @@ const UniqueAnswer = ({ id, question, answers, onSelectedChange }: Props) => {
               value={answer.id}
               id={answer.id}
               name={answer.id}
+              isDisabled={isSolving}
             >
               {answer.text}
             </Radio>

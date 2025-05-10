@@ -3,25 +3,35 @@ import { CheckboxGroup, Checkbox } from "@heroui/checkbox";
 
 type Props = {
   id: number;
-  question: string;
+  question: any;
   answers: any;
   onSelectedChange: any;
+  isSolving: boolean;
 };
 
 type AnswerTemplate = {
   number: number;
   answer: any;
+  type: any;
 };
 
-const MultipleAnswer = ({ id, question, answers, onSelectedChange }: Props) => {
+const MultipleAnswer = ({
+  id,
+  question,
+  answers,
+  isSolving,
+  onSelectedChange,
+}: Props) => {
   return (
     <Card key={id}>
       {id}
-      <CardHeader>{question}</CardHeader>
+      <CardHeader>{question.question}</CardHeader>
       <CardBody>
+        {isSolving && <span>{question.feedback}</span>}
         <CheckboxGroup
           name={id.toString()}
           id={id.toString()}
+          isDisabled={isSolving}
           onValueChange={(selectedValue) => {
             onSelectedChange((prev: AnswerTemplate[]) => {
               return prev.map((answerLog: AnswerTemplate) => {

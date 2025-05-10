@@ -3,21 +3,26 @@ import { Input } from "@heroui/input";
 
 type Props = {
   id: number;
-  question: string;
+  question: any;
   onAnswerChange: any;
+  isSolving: boolean;
 };
 
 type AnswerTemplate = {
   number: number;
   answer: any;
+  type: any;
 };
 
-const FreeAnswer = ({ id, question, onAnswerChange }: Props) => {
+const FreeAnswer = ({ id, question, isSolving, onAnswerChange }: Props) => {
   return (
     <Card>
-      <CardHeader>{question}</CardHeader>
+      <CardHeader>{question.question}</CardHeader>
       <CardBody>
+        {isSolving && <span>{question.feedback}</span>}
+
         <Input
+          isDisabled={isSolving}
           placeholder="..."
           onValueChange={(selectedValue) => {
             onAnswerChange((prev: AnswerTemplate[]) => {
