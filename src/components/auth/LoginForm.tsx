@@ -24,7 +24,6 @@ const LoginForm = () => {
       body: JSON.stringify({ username: user, password }),
       credentials: "include",
     });
-    console.log(response);
 
     if (!response.ok) {
       console.log(response);
