@@ -1,8 +1,6 @@
 import { Card, CardBody } from "@heroui/card";
 import { Input } from "@heroui/input";
 import { RadioGroup, Radio } from "@heroui/radio";
-import React from "react";
-
 type Props = {
   questionValue: string;
 };

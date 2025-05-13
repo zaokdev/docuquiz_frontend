@@ -23,7 +23,7 @@ const CompartirModal = ({ onOpenChange, isOpen, quiz_id }: any) => {
   return (
     <Modal isOpen={isOpen} placement="auto" onOpenChange={onOpenChange}>
       <ModalContent>
-        {(onClose) => (
+        {() => (
           <>
             <ModalHeader className="flex flex-col gap-1">
               Compartir quiz

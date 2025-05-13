@@ -149,13 +149,13 @@ const QuestionCreationHandler = () => {
       feedback: "",
     };
 
-    setQuiz((prev) => [...prev, newQuestion]);
+    setQuiz((prev: any) => [...prev, newQuestion]);
     setQuestionCounter((prev) => prev + 1);
   }
 
   return (
     <>
-      {quiz.map((question) => {
+      {quiz.map((question: any) => {
         switch (question.type) {
           case "multiple":
             return (

@@ -2,7 +2,7 @@ import { Button } from "@heroui/button";
 import { Card, CardBody } from "@heroui/card";
 import { Input } from "@heroui/input";
 import { RadioGroup, Radio } from "@heroui/radio";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type Props = {
   questionValue: string;
@@ -18,10 +18,6 @@ const UniqueSelection = ({ questionValue, initialAnswers }: Props) => {
     );
     setAnswers(updatedAnswers);
     console.log(answers);
-  }
-
-  function handleRemoveAnswer(id: any): void {
-    throw new Error("Function not implemented.");
   }
 
   return (
@@ -43,11 +39,7 @@ const UniqueSelection = ({ questionValue, initialAnswers }: Props) => {
                   handleAnswerTextChange(answer.id, e.target.value)
                 }
               />
-              <Button
-                color="danger"
-                size="sm"
-                onPress={() => handleRemoveAnswer(answer.id)}
-              >
+              <Button color="danger" size="sm">
                 Eliminar
               </Button>
             </div>
