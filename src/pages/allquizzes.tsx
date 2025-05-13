@@ -82,9 +82,6 @@ const AllQuizzesPage = () => {
                     >
                       Compartir
                     </Button>
-                    <Button color="danger" variant="faded">
-                      Eliminar
-                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
