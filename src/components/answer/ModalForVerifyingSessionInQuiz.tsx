@@ -9,43 +9,44 @@ import {
 } from "@heroui/modal";
 import { useNavigate } from "react-router-dom";
 
-const ModalForVerifyingSessionInQuiz = ({isOpen,onOpenChange}:any) => {
+const ModalForVerifyingSessionInQuiz = ({ isOpen, onOpenChange }: any) => {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate()
-    
+  function iniciarSesion() {
+    navigate({ pathname: "/auth/login" });
+  }
 
-    function iniciarSesion(e: any) {
-        navigate({pathname: "/auth/login"})
-    }
-
-    function registrarUsuario(e: any) {
-        navigate({pathname: "/auth/register"})
-    }
+  function registrarUsuario() {
+    navigate({ pathname: "/auth/register" });
+  }
 
   return (
-          <Modal isOpen={isOpen} placement="auto" onOpenChange={onOpenChange}>
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
-              <ModalBody>
-                <p>
-                  Para poder usar de manera remota tus quizzes, deberás iniciar sesión o registrarte.
-                </p>
-              </ModalBody>
-              <ModalFooter>
-                <Button color="secondary" variant="light" onPress={iniciarSesion}>
-                  Iniciar Sesión
-                </Button>
-                <Button color="primary" onPress={registrarUsuario}>
-                  Registrarse
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
-  )
-}
+    <Modal isOpen={isOpen} placement="auto" onOpenChange={onOpenChange}>
+      <ModalContent>
+        {() => (
+          <>
+            <ModalHeader className="flex flex-col gap-1">
+              Modal Title
+            </ModalHeader>
+            <ModalBody>
+              <p>
+                Para poder usar de manera remota tus quizzes, deberás iniciar
+                sesión o registrarte.
+              </p>
+            </ModalBody>
+            <ModalFooter>
+              <Button color="secondary" variant="light" onPress={iniciarSesion}>
+                Iniciar Sesión
+              </Button>
+              <Button color="primary" onPress={registrarUsuario}>
+                Registrarse
+              </Button>
+            </ModalFooter>
+          </>
+        )}
+      </ModalContent>
+    </Modal>
+  );
+};
 
-export default ModalForVerifyingSessionInQuiz
+export default ModalForVerifyingSessionInQuiz;

@@ -1,13 +1,12 @@
-import RegisterForm from '@/components/auth/RegisterForm'
-import DefaultLayout from '@/layouts/default'
-import React from 'react'
+import RegisterForm from "@/components/auth/RegisterForm";
+import DefaultLayout from "@/layouts/default";
 
 const RegisterPage = () => {
   return (
     <DefaultLayout>
-        <RegisterForm />
+      <RegisterForm />
     </DefaultLayout>
-  )
-}
+  );
+};
 
-export default RegisterPage
+export default RegisterPage;
