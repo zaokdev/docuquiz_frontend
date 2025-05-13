@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { useState } from "react";
+import { useState } from "react";
 import { Form } from "@heroui/form";
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";

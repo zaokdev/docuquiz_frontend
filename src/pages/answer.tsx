@@ -57,6 +57,8 @@ const AnswerPage = () => {
 
   if (isLoading) return <div>Loading</div>;
 
+  if (error) return <div>Error</div>;
+
   if (quiz)
     return (
       <DefaultLayout>

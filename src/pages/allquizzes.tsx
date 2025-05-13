@@ -1,7 +1,7 @@
 import { AuthContext } from "@/context/AuthContext";
 import DefaultLayout from "@/layouts/default";
 import { API_URL } from "@/utils/dotenv";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Table,
@@ -10,7 +10,6 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  getKeyValue,
 } from "@heroui/table";
 import { Button } from "@heroui/button";
 import { useDisclosure } from "@heroui/modal";

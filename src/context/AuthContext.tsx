@@ -1,5 +1,5 @@
 import { API_URL } from "@/utils/dotenv";
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 
 export const AuthContext = createContext<any>(undefined);
 
@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }: any) => {
   };
 
   const signingOut = async () => {
-    const response = await fetch(`${API_URL}/auth/logout`, {
+    await fetch(`${API_URL}/auth/logout`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

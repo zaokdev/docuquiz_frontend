@@ -17,7 +17,7 @@ const ModalForSubmittingNewQuiz = ({ isOpen, onOpenChange }: any) => {
   const [quizName, setQuizName] = useState();
   const navigate = useNavigate();
 
-  async function submitQuiz(e: any) {
+  async function submitQuiz() {
     if (!quizName) return alert("No puedes tener un quiz sin nombre");
     const questionsData = localStorage.getItem("quizLocal");
     if (!questionsData) return alert("No se encuentra datos de ningun quiz");
@@ -52,7 +52,7 @@ const ModalForSubmittingNewQuiz = ({ isOpen, onOpenChange }: any) => {
   return (
     <Modal isOpen={isOpen} placement="auto" onOpenChange={onOpenChange}>
       <ModalContent>
-        {(onClose) => (
+        {() => (
           <>
             <ModalHeader className="flex flex-col gap-1">
               Subir nuevo quiz
