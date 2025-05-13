@@ -91,11 +91,13 @@ const RegisterForm = () => {
             }}
           />
 
-          <div className="flex gap-2">
+          <div className="flex gap-2 items-center justify-center">
             <Button color="primary" type="submit" size="lg">
               Registrar
             </Button>
-            <Link to={"/auth/login"}>Registro</Link>
+            <Link to={"/auth/login"} className="">
+              Login
+            </Link>
           </div>
         </Form>
         <img
