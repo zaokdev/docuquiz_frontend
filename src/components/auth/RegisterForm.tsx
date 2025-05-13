@@ -4,6 +4,7 @@ import { Form } from "@heroui/form";
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "@/utils/dotenv";
 
 const RegisterForm = () => {
   const [user, setUser] = useState();
@@ -19,7 +20,7 @@ const RegisterForm = () => {
       password,
       email,
     };
-    const response = await fetch("http://localhost:3000/api/auth/register", {
+    const response = await fetch(`${API_URL}/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

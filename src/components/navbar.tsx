@@ -9,36 +9,90 @@ import {
   NavbarMenu,
   NavbarMenuItem,
 } from "@heroui/navbar";
-import {Link} from "@heroui/link"
+import { Link } from "@heroui/link";
 import { Button } from "@heroui/button";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "@/context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
-  return <HeroUINavbar maxWidth="xl" position="sticky">
-    <NavbarBrand>
-      <p className="font-bold text-inherit">Docuquiz</p>
-    </NavbarBrand>
-    <NavbarContent className="hidden sm:flex gap-4" justify="center">
-      <NavbarItem>
-        <Link color="foreground" href="/">
-          Inicio
-        </Link>
-      </NavbarItem>
-            <NavbarItem>
-        <Link color="foreground" href="/answer?type=local">
-          Quiz local
-        </Link>
-      </NavbarItem>
-      
-    </NavbarContent>
-          <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link href="/auth/login">Login</Link>
+  const { verify, isLoggedIn, setSignIn, settingUser, signingOut } =
+    useContext(AuthContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    verify()
+      .then((result: any) => {
+        const { isAuthenticated } = result;
+        setSignIn(isAuthenticated);
+        if (isAuthenticated) {
+          settingUser(result.decoded);
+        }
+      })
+      .catch((error: any) => console.error(error));
+  }, []);
+
+  return (
+    <HeroUINavbar maxWidth="xl" position="sticky" className="bg-blue-50">
+      <NavbarBrand>
+        <p className="font-bold text-inherit">Docuquiz</p>
+      </NavbarBrand>
+      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        <NavbarItem>
+          <Link color="foreground" href="/">
+            Inicio
+          </Link>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="/auth/register" variant="flat">
-            Sign Up
-          </Button>
+          <Link color="foreground" href="/answer?type=local">
+            Quiz local
+          </Link>
         </NavbarItem>
+        {isLoggedIn && (
+          <NavbarItem>
+            <Link color="foreground" href="/all_quizzes">
+              Mis Quizzes
+            </Link>
+          </NavbarItem>
+        )}
       </NavbarContent>
-  </HeroUINavbar>;
+      <NavbarContent justify="end">
+        {isLoggedIn ? (
+          <NavbarItem>
+            <Button
+              as={Link}
+              color="primary"
+              href="/auth/register"
+              variant="flat"
+              onPress={() => {
+                signingOut().then(() => {
+                  navigate({
+                    pathname: "/",
+                  });
+                });
+              }}
+            >
+              Sign Out
+            </Button>
+          </NavbarItem>
+        ) : (
+          <>
+            <NavbarItem className="hidden lg:flex">
+              <Link href="/auth/login">Login</Link>
+            </NavbarItem>
+            <NavbarItem>
+              <Button
+                as={Link}
+                color="primary"
+                href="/auth/register"
+                variant="flat"
+              >
+                Sign Up
+              </Button>
+            </NavbarItem>
+          </>
+        )}
+      </NavbarContent>
+    </HeroUINavbar>
+  );
 };

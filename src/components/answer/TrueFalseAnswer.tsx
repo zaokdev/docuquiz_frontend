@@ -4,7 +4,8 @@ import { Radio, RadioGroup } from "@heroui/radio";
 type Props = {
   question: any;
   onSelectedChange: any;
-  isSolving: boolean;
+  isGrading: boolean;
+  finalScore: any;
 };
 
 type AnswerTemplate = {
@@ -15,18 +16,29 @@ type AnswerTemplate = {
 
 const TrueFalseAnswer = ({
   question,
-  isSolving,
+  isGrading,
   onSelectedChange,
+  finalScore,
 }: Props) => {
   return (
     <Card>
       <CardHeader>{question.question}</CardHeader>
       <CardBody>
-        {isSolving && <span>{question.feedback}</span>}
+        {isGrading && (
+          <span
+            className={
+              finalScore && finalScore[question.question_id - 1].correct
+                ? "bg-green-200 rounded-xl p-3 m-3"
+                : "bg-red-200 rounded-xl p-3 m-3"
+            }
+          >
+            {question.feedback}
+          </span>
+        )}
         <RadioGroup
           name={question.question_id.toString()}
           id={question.question_id.toString()}
-          isDisabled={isSolving}
+          isDisabled={isGrading}
           onValueChange={(selectedValue) => {
             onSelectedChange((prev: AnswerTemplate[]) => {
               return prev.map((answer: AnswerTemplate) => {

@@ -1,6 +1,5 @@
 import DefaultLayout from "@/layouts/default";
 import { Button } from "@heroui/button";
-import { useState } from "react";
 
 import QuestionCreationHandler from "@/components/create/QuestionCreationHandler";
 

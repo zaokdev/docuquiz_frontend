@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 import DefaultLayout from "@/layouts/default";
 import { title, subtitle } from "@/components/primitives";
+import { Card, CardBody, CardHeader } from "@heroui/card";
 
 export default function IndexPage() {
   const [file, setFile] = useState<File | null>(null);
@@ -61,7 +62,7 @@ export default function IndexPage() {
 
       if (!response.ok) {
         setError("Error al subir el archivo");
-        setError(response)
+        setError(response);
 
         return;
       }
@@ -70,9 +71,9 @@ export default function IndexPage() {
 
       localStorage.setItem("quizLocal", result);
       setSuccess(true);
-    } catch (e:any) {
+    } catch (e: any) {
       setError("Hubo un error externo: " + e.message);
-      setSuccess(false)
+      setSuccess(false);
     } finally {
       setIsUploading(false);
     }
@@ -89,7 +90,7 @@ export default function IndexPage() {
 
   return (
     <DefaultLayout>
-      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10 mx-auto container">
         <div className="inline-block max-w-lg text-center justify-center">
           <span className={title()}>Convierte PDFs en </span>
           <span className={title({ color: "blue" })}>quizzes&nbsp;</span>
@@ -122,7 +123,29 @@ export default function IndexPage() {
         </div>
         {error && <span>{error}</span>}
         {isUploading && !error && <CircularProgress color="primary" />}
-        {isUploading && !error && <span>El proceso demorará de 1 a 2 minutos. :)</span>}
+        {isUploading && !error && (
+          <span>El proceso demorará de 1 a 2 minutos. :)</span>
+        )}
+        <Card>
+          <CardHeader>
+            <h2 className="text-xl font-bold text-center w-full">Como usar</h2>
+          </CardHeader>
+
+          <CardBody>
+            <div className="flex flex-col items-center gap-4">
+              <p className="font-semibold mb-4">
+                Arrastra un archivo PDF a la zona de carga o haz clic en el
+                botón de carga para subirlo.
+              </p>
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/4726/4726010.png"
+                alt="PDF logo"
+                className="h-24 w-24 animate-bounce"
+              />
+              <span>Máximo: 10 MB</span>
+            </div>
+          </CardBody>
+        </Card>
       </section>
     </DefaultLayout>
   );

@@ -5,7 +5,7 @@ import { Input } from "@heroui/input";
 type Props = {
   question: any;
   onAnswerChange: any;
-  isSolving: boolean;
+  isGrading: boolean;
 };
 
 type AnswerTemplate = {
@@ -14,15 +14,19 @@ type AnswerTemplate = {
   type: any;
 };
 
-const FreeAnswer = ({ question, isSolving, onAnswerChange }: Props) => {
+const FreeAnswer = ({ question, isGrading, onAnswerChange }: Props) => {
   return (
     <Card>
       <CardHeader>{question.question}</CardHeader>
       <CardBody>
-        {isSolving && <span>{question.feedback}</span>}
+        {isGrading && (
+          <span className="bg-slate-200 rounded-xl p-3 m-3">
+            {question.feedback}
+          </span>
+        )}
 
         <Input
-          isDisabled={isSolving}
+          isDisabled={isGrading}
           placeholder="..."
           onValueChange={(selectedValue) => {
             onAnswerChange((prev: AnswerTemplate[]) => {
