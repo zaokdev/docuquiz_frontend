@@ -14,7 +14,7 @@ const CompartirModal = ({ onOpenChange, isOpen, quiz_id }: any) => {
       await navigator.clipboard.writeText(
         `${APP_URL}/answer?id=${quiz_id}&type=online`
       );
-      alert("Texto copiado al portapapeles!");
+      alert("Texto copiado al portapapeles!!");
     } catch (err) {
       console.error("Error al copiar: ", err);
       alert("Error al copiar el texto");
