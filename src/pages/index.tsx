@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import DefaultLayout from "@/layouts/default";
 import { title, subtitle } from "@/components/primitives";
 import { Card, CardBody, CardHeader } from "@heroui/card";
+import { API_URL } from "@/utils/dotenv";
 
 export default function IndexPage() {
   const [file, setFile] = useState<File | null>(null);
@@ -55,7 +56,7 @@ export default function IndexPage() {
 
       formData.append("pdf", file);
 
-      const response = await fetch("http://localhost:3000/api/read-pdf", {
+      const response = await fetch(`${API_URL}/read-pdf`, {
         method: "POST",
         body: formData,
       });
