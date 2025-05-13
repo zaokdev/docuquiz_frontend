@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Form } from "@heroui/form";
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { API_URL } from "@/utils/dotenv";
 
 const RegisterForm = () => {
@@ -95,6 +95,7 @@ const RegisterForm = () => {
             <Button color="primary" type="submit" size="lg">
               Registrar
             </Button>
+            <Link to={"/auth/login"}>Registro</Link>
           </div>
         </Form>
         <img
