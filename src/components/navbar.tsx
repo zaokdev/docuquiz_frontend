@@ -61,9 +61,7 @@ export const Navbar = () => {
               variant="flat"
               onPress={() => {
                 signingOut().then(() => {
-                  navigate({
-                    pathname: "/",
-                  });
+                  window.location.href = "/";
                 });
               }}
             >
