@@ -57,9 +57,7 @@ export const Navbar = () => {
         {isLoggedIn ? (
           <NavbarItem>
             <Button
-              as={Link}
               color="primary"
-              href="/auth/register"
               variant="flat"
               onPress={() => {
                 signingOut().then(() => {
